@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Catálogo de productos para el cuidado de tus animales">
+    <title>{% block title %}Basssand{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{{ url_for('main.home') }}" aria-label="Basssand, inicio">
+                <span class="brand-mark">B</span>
+                <span>Basssand</span>
+            </a>
+            <nav class="main-nav" aria-label="Navegación principal">
+                <a class="nav-link active" href="{{ url_for('main.home') }}">Catálogo</a>
+                <a class="nav-link" href="#categorias">Categorías</a>
+            </nav>
+            <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span class="footer-brand">Basssand</span>
+            <span>Cuidado sencillo para animales felices.</span>
+        </div>
+    </footer>
+</body>
+</html>
