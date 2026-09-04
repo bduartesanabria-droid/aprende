@@ -12,7 +12,6 @@ def home():
         productos=[],
         categorias=["Perros", "Gatos", "Vacas", "Caballos", "Aves", "Peces"],
     )
-    return "Página principal"
 
 
 @main.get("/health")

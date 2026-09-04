@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Catálogo de productos para el cuidado de tus animales">
-    <title>{% block title %}Basssand{% endblock %}</title>
+    <meta name="description" content="Basssand: catálogo animal conectado al futuro">
+    <title>{% block title %}Basssand // Animal Systems{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="{{ url_for('main.home') }}" aria-label="Basssand, inicio">
-                <span class="brand-mark">B</span>
-                <span>Basssand</span>
+                <span class="brand-mark">B/</span>
+                <span>BASSSAND<span class="brand-pulse">_</span></span>
             </a>
             <nav class="main-nav" aria-label="Navegación principal">
-                <a class="nav-link active" href="{{ url_for('main.home') }}">Catálogo</a>
-                <a class="nav-link" href="#categorias">Categorías</a>
+                <a class="nav-link active" href="{{ url_for('main.home') }}">[ INICIO ]</a>
+                <a class="nav-link" href="#categorias">[ ESPECIES ]</a>
             </nav>
             <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">
                 <span></span><span></span><span></span>
@@ -28,8 +28,8 @@
 
     <footer class="site-footer">
         <div class="container footer-inner">
-            <span class="footer-brand">Basssand</span>
-            <span>Cuidado sencillo para animales felices.</span>
+            <span class="footer-brand">BASSSAND // 2026</span>
+            <span>CONEXIÓN ESTABLE · CUIDADO ANIMAL ONLINE</span>
         </div>
     </footer>
 </body>
