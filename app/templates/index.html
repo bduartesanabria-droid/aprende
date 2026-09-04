@@ -34,7 +34,7 @@
             <p class="section-note">CLASIFICA EL SUMINISTRO<br>SEGÚN SU ESPECIE</p>
         </div>
         <div class="category-list">
-            {% for categoria in ["Perros", "Gatos", "Vacas", "Caballos", "Aves", "Peces"] %}
+            {% for categoria in categorias %}
             <a class="category-chip" href="#catalogo"><span class="chip-index">0{{ loop.index }}</span>{{ categoria|upper }}<span class="chip-arrow" aria-hidden="true">↗</span></a>
             {% endfor %}
         </div>
