@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Basssand // Consola del vendedor{% endblock %}
+
+{% block content %}
+<section class="seller-hero">
+    <div class="container seller-heading">
+        <div>
+            <p class="eyebrow"><span class="status-dot"></span> CONSOLA DE VENDEDOR / ACCESO LOCAL</p>
+            <h1>GESTIONA TU<br><span>INVENTARIO.</span></h1>
+        </div>
+        <div class="seller-status">
+            <span>ESTADO DEL NODO</span>
+            <strong>ONLINE</strong>
+            <small>PRODUCTOS: {{ productos|length }}</small>
+        </div>
+    </div>
+</section>
+
+<section class="seller-section">
+    <div class="container seller-layout">
+        <div class="seller-form-panel">
+            <div class="panel-heading">
+                <p class="eyebrow">01 / NUEVA CARGA</p>
+                <h2>Agregar producto</h2>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form class="seller-form" method="post" action="{{ url_for('main.seller') }}">
+                <label for="nombre">NOMBRE DEL PRODUCTO</label>
+                <input id="nombre" name="nombre" type="text" maxlength="80" placeholder="Ej. Kit de nutrición" required>
+
+                <label for="descripcion">DESCRIPCIÓN</label>
+                <textarea id="descripcion" name="descripcion" maxlength="200" rows="4" placeholder="Describe el suministro..." required></textarea>
+
+                <div class="form-row">
+                    <div>
+                        <label for="precio">PRECIO</label>
+                        <input id="precio" name="precio" type="number" min="0" step="0.01" placeholder="0.00" required>
+                    </div>
+                    <div>
+                        <label for="categoria">ESPECIE</label>
+                        <select id="categoria" name="categoria" required>
+                            <option value="">Seleccionar</option>
+                            {% for categoria in categorias %}
+                            <option value="{{ categoria }}">{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <button class="button button-primary form-submit" type="submit">TRANSMITIR PRODUCTO <span aria-hidden="true">[↗]</span></button>
+            </form>
+        </div>
+
+        <div class="seller-inventory-panel">
+            <div class="panel-heading inventory-heading">
+                <div>
+                    <p class="eyebrow">02 / INVENTARIO ACTIVO</p>
+                    <h2>Productos cargados</h2>
+                </div>
+                <span class="result-count">{{ productos|length }} ITEMS</span>
+            </div>
+            {% if productos %}
+            <div class="seller-product-list">
+                {% for producto in productos %}
+                <article class="seller-product-row">
+                    <span class="row-number">{{ "%02d"|format(loop.index) }}</span>
+                    <div class="row-product-info">
+                        <strong>{{ producto.nombre }}</strong>
+                        <small>{{ producto.categoria|upper }} // REF-{{ "%03d"|format(producto.id) }}</small>
+                    </div>
+                    <strong class="row-price">${{ "%.2f"|format(producto.precio) }}</strong>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="seller-empty">SIN PRODUCTOS // ESPERANDO PRIMERA CARGA</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

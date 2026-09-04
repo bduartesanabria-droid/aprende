@@ -25,5 +25,29 @@ def create_app():
         from app.models import producto, usuario  # noqa: F401
 
         db.create_all()
+        if producto.Producto.query.count() == 0:
+            db.session.add_all(
+                [
+                    producto.Producto(
+                        nombre="Núcleo Vital K-9",
+                        descripcion="Suplemento diario para energía y recuperación.",
+                        precio=24.90,
+                        categoria="Perros",
+                    ),
+                    producto.Producto(
+                        nombre="Módulo Felino N-02",
+                        descripcion="Ración equilibrada para gatos de interior.",
+                        precio=19.50,
+                        categoria="Gatos",
+                    ),
+                    producto.Producto(
+                        nombre="Biofeed Ganado",
+                        descripcion="Mezcla nutritiva para bienestar del ganado.",
+                        precio=48.00,
+                        categoria="Vacas",
+                    ),
+                ]
+            )
+            db.session.commit()
 
     return app
