@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Catálogo | Basssand{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <p class="eyebrow">Cuidado animal, sin complicaciones</p>
+            <h1>Todo lo que necesitan, en un solo lugar.</h1>
+            <p class="hero-text">Encuentra productos pensados para acompañar cada etapa de la vida de tus animales.</p>
+            <a class="button button-primary" href="#catalogo">Explorar catálogo <span aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+            <div class="sun"></div>
+            <div class="art-label">bienestar<br>cotidiano</div>
+            <div class="art-line art-line-one"></div>
+            <div class="art-line art-line-two"></div>
+        </div>
+    </div>
+</section>
+
+<section class="category-strip" id="categorias" aria-labelledby="category-title">
+    <div class="container">
+        <div class="section-heading compact-heading">
+            <p class="eyebrow">Explora por especie</p>
+            <h2 id="category-title">Encuentra su categoría</h2>
+        </div>
+        <div class="category-list">
+            {% for categoria in categorias %}
+            <a class="category-chip" href="#catalogo">{{ categoria }} <span aria-hidden="true">&#8599;</span></a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Selección Basssand</p>
+                <h2 id="catalog-title">Productos destacados</h2>
+            </div>
+            <span class="result-count">{{ productos|length }} productos</span>
+        </div>
+
+        {% if productos %}
+        <div class="product-grid">
+            {% for producto in productos %}
+            <article class="product-card">
+                <div class="product-image product-image-{{ loop.index % 3 }}" aria-hidden="true"><span>{{ producto.categoria }}</span></div>
+                <div class="product-details">
+                    <p class="product-category">{{ producto.categoria }}</p>
+                    <h3>{{ producto.nombre }}</h3>
+                    <p class="product-description">{{ producto.descripcion }}</p>
+                    <strong class="product-price">${{ "%.2f"|format(producto.precio) }}</strong>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">+</span>
+            <h3>El catálogo se está preparando</h3>
+            <p>Pronto encontrarás aquí productos seleccionados para tus animales.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
