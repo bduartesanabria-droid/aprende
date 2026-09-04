@@ -6,11 +6,7 @@ main = Blueprint("main", __name__)
 
 @main.get("/")
 def home():
-    return render_template(
-        "index.html",
-        productos=[],
-        categorias=["Perros", "Gatos", "Vacas", "Caballos", "Aves", "Peces"],
-    )
+    return render_template("index.html")
 
 
 @main.get("/health")
